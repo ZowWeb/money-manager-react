@@ -7,7 +7,7 @@ export const AddTransaction = () => {
 
   const { addTransaction } = useContext(GlobalContext);
 
-  const onSubmit = e => {
+  const onSubmit = async e => {
     e.preventDefault();
     const newTransaction = {
       id: Math.floor(Math.random() * 100000000),
@@ -16,7 +16,9 @@ export const AddTransaction = () => {
     };
 
     // Call the action
-    addTransaction(newTransaction);
+    await addTransaction(newTransaction);
+    setText('');
+    setAmount(0);
   };
 
   return (
