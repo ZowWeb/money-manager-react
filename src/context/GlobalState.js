@@ -1,7 +1,10 @@
 import React, { createContext, useReducer } from "react";
 import AppReducer from "./AppReducer";
 import axios from "axios";
-axios.defaults.baseURL = "https://money-manager-backend.herokuapp.com";
+
+if (process.env.NODE_ENV === "production") {
+  axios.defaults.baseURL = "https://money-manager-backend.herokuapp.com";
+}
 
 // Initial State
 const initialState = {
