@@ -3,7 +3,7 @@ import { GlobalContext } from "../context/GlobalState";
 import { numberWithCommas } from "../utils/format";
 
 export const IncomeExpenses = () => {
-  const { transactions } = useContext(GlobalContext);
+  const { transactions, loading } = useContext(GlobalContext);
 
   // Update the income and expense
   const amounts = transactions.map(transaction => transaction.amount);
@@ -22,11 +22,15 @@ export const IncomeExpenses = () => {
     <div className="inc-exp-container">
       <div>
         <h4>Income</h4>
-        <p className="money plus">&#8377;{numberWithCommas(income)}</p>
+        <p className={"money plus " + (loading ? "loading" : "")}>
+          &#8377;{numberWithCommas(income)}
+        </p>
       </div>
       <div>
         <h4>Expense</h4>
-        <p className="money minus">&#8377;{numberWithCommas(expense)}</p>
+        <p className={"money minus " + (loading ? "loading" : "")}>
+          &#8377;{numberWithCommas(expense)}
+        </p>
       </div>
     </div>
   );
