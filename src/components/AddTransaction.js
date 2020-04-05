@@ -2,14 +2,9 @@ import React, { useState, useContext } from "react";
 import { GlobalContext } from "../context/GlobalState";
 
 import { makeStyles } from "@material-ui/core/styles";
-import { TextField, Button } from "@material-ui/core";
-
-const useStyles = makeStyles((theme) => ({
-  my: {
-    marginTop: theme.spacing(2),
-    marginBottom: theme.spacing(2),
-  },
-}));
+import { TextField, Button, InputAdornment } from "@material-ui/core";
+import CreateIcon from "@material-ui/icons/Create";
+import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
 
 export const AddTransaction = () => {
   const [text, setText] = useState("");
@@ -34,8 +29,6 @@ export const AddTransaction = () => {
     setLoading(false);
   };
 
-  const classes = useStyles();
-
   return (
     <div>
       <h3>Add new transaction</h3>
@@ -43,21 +36,35 @@ export const AddTransaction = () => {
         <TextField
           id="text"
           label="Memo"
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <CreateIcon />
+              </InputAdornment>
+            ),
+          }}
           variant="outlined"
           value={text}
           onChange={(e) => setText(e.target.value)}
-          className={classes.my}
+          margin="normal"
           fullWidth
         />
         <TextField
           id="amount"
           label="Amount"
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <AttachMoneyIcon />
+              </InputAdornment>
+            ),
+          }}
           helperText="negative - expense, positive - income"
           variant="outlined"
           type="number"
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
-          className={classes.my}
+          margin="normal"
           fullWidth
         />
         <Button
