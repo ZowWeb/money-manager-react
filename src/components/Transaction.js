@@ -2,8 +2,9 @@ import React, { useContext } from "react";
 import { GlobalContext } from "../context/GlobalState";
 import { numberWithCommas } from "../utils/format";
 
-import { Grid, Paper, Button } from "@material-ui/core";
+import { Grid, Paper, IconButton } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 const useStyles = makeStyles((theme) => ({
   item: {
@@ -12,10 +13,9 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: theme.spacing(2),
+    padding: `0 ${theme.spacing(2)}px`,
     margin: `${theme.spacing(1)}px 0`,
   },
-  red: theme.palette.error.main,
 }));
 
 export const Transaction = ({ transaction }) => {
@@ -33,12 +33,13 @@ export const Transaction = ({ transaction }) => {
         <span>{transaction.text}</span>
         <span>
           {sign} &#8377;{numberWithCommas(Math.abs(transaction.amount))}
-          <Button
+          <IconButton
+            aria-label="delete"
             color="secondary"
             onClick={() => deleteTransaction(transaction._id)}
           >
-            del
-          </Button>
+            <DeleteIcon />
+          </IconButton>
         </span>
       </Paper>
     </Grid>
