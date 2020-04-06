@@ -21,7 +21,7 @@ export const IncomeExpenses = () => {
   ).toFixed(2);
 
   return (
-    <Paper className="inc-exp-container" elevation={3}>
+    <Paper className="inc-exp-container">
       <div>
         <h4>Income</h4>
         <p className={"money plus " + (loading ? "loading" : "")}>
