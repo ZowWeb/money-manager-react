@@ -13,7 +13,8 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: `0 ${theme.spacing(2)}px`,
+    padding: theme.spacing(2),
+    paddingRight: 0,
     margin: `${theme.spacing(1)}px 0`,
   },
 }));
