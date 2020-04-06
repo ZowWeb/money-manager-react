@@ -15,7 +15,9 @@ import {
   AppBar,
   Typography,
   Toolbar,
+  IconButton,
 } from "@material-ui/core";
+import MenuIcon from "@material-ui/icons/Menu";
 import { makeStyles } from "@material-ui/core/styles";
 import theme from "./theme";
 
@@ -23,6 +25,9 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     padding: theme.spacing(2),
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
   },
   title: {
     flexGrow: 1,
@@ -38,14 +43,21 @@ function App() {
         <CssBaseline />
         <AppBar position="sticky">
           <Toolbar>
+            <IconButton
+              edge="start"
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="menu"
+            >
+              <MenuIcon />
+            </IconButton>
             <Typography variant="h6" className={classes.title}>
               Money Manager App
             </Typography>
           </Toolbar>
         </AppBar>
         <Grid container direction="column" className={classes.root}>
-          <Grid item xs={12}>
-          </Grid>
+          <Grid item xs={12}></Grid>
           <Grid item xs={12}>
             <Balance />
           </Grid>
