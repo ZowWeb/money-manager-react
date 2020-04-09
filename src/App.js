@@ -37,6 +37,9 @@ function App() {
     title: {
       flexGrow: 1,
     },
+    minHeight: {
+      minHeight: "100vh",
+    },
   }));
   const classes = useStyles();
 
@@ -66,7 +69,11 @@ function App() {
               </IconButton>
             </Toolbar>
           </AppBar>
-          <Grid container direction="column" className={classes.root}>
+          <Grid
+            container
+            direction="column"
+            className={`${classes.root} ${classes.minHeight}`}
+          >
             <Grid item xs={12}></Grid>
             <Grid item xs={12}>
               <Balance />
