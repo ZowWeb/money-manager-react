@@ -10,7 +10,7 @@ if (process.env.NODE_ENV === "production") {
 const initialState = {
   transactions: [],
   error: null,
-  loading: true
+  loading: true,
 };
 
 // Create Context
@@ -27,37 +27,45 @@ export const GlobalProvider = ({ children }) => {
 
       dispatch({
         type: "GET_TRANSACTIONS",
-        payload: res.data.data
+        payload: res.data.data,
       });
     } catch (err) {
       dispatch({
         type: "TRANSACTION_ERROR",
-        payload: err.response.data.error
+        payload: err.response.data.error,
       });
     }
   }
 
   async function deleteTransaction(id) {
+    dispatch({
+      type: "LOADING",
+    });
+
     try {
       await axios.delete(`/api/v1/transactions/${id}`);
 
       dispatch({
         type: "DELETE_TRANSACTION",
-        payload: id
+        payload: id,
       });
     } catch (err) {
       dispatch({
         type: "TRANSACTION_ERROR",
-        payload: err.response.data.error
+        payload: err.response.data.error,
       });
     }
   }
 
   async function addTransaction(transaction) {
+    dispatch({
+      type: "LOADING",
+    });
+    
     const config = {
       headers: {
-        "Content-Type": "application/json"
-      }
+        "Content-Type": "application/json",
+      },
     };
 
     try {
@@ -65,12 +73,12 @@ export const GlobalProvider = ({ children }) => {
 
       dispatch({
         type: "ADD_TRANSACTION",
-        payload: res.data.data
+        payload: res.data.data,
       });
     } catch (err) {
       dispatch({
         type: "TRANSACTION_ERROR",
-        payload: err.response.data.error
+        payload: err.response.data.error,
       });
     }
   }
@@ -83,7 +91,7 @@ export const GlobalProvider = ({ children }) => {
         loading: state.loading,
         getTransactions,
         deleteTransaction,
-        addTransaction
+        addTransaction,
       }}
     >
       {children}
